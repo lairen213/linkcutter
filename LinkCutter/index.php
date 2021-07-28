@@ -1,15 +1,12 @@
 <?php
 require_once 'server.php';
-
+require_once 'db.php';
 //проверяем, обычная ссылка или сокращённая
 if (isset($_GET['c'])) {
     //Проверяем есть ли такая ссылка в бд
-
-    $link = "http://linkcutter";//ВАШ ДОМЕН, важно чтобы была без слеша в конце
-    $redirectLink = checkRedirect($link."/?c=".$_GET['c']);
-
+    $redirectLink = checkRedirect($majorLink."/?c=".$_GET['c']);
     if($redirectLink){//Если есть то перенаправляем на оригинальную ссылку
-        
+        print "<h1>".$redirectLink."</h1>";
         header('Location: '.$redirectLink,true, 301);
     }else{
         echo '<script type="text/javascript">alert("Ссылка не найдена...");</script>';

@@ -1,6 +1,7 @@
 <?php
     //БД
     require_once 'db.php';
+
     $host = $host2; // адрес сервера 
     $database = $database2; // имя базы данных
     $user = $user2; // имя пользователя
@@ -162,17 +163,17 @@
 
     function addCuttedLink($orLink){//Добавление сокращенную строку вместе с проверкой
         global $link;
+        global $majorLink;
         $check = 0;
         $shifr = random_string(5);
-        $newlink = "http://linkcutter/?c=$shifr";
+        $newlink = $majorLink."/?c=$shifr";
         do{
             if(checkCuttedLink($newlink)){
                 $check = 1;
             }
             $shifr = random_string(5);
-            $newlink = "http://linkcutter/?c=$shifr";
+            $newlink = $majorLink."/?c=$shifr";
         }while($check == 0);
-
 
         addNewCuttedLink($orLink, $newlink);
     }
